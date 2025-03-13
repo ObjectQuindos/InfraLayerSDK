@@ -33,7 +33,7 @@ public final class Request {
         
         task = session?.task(with: request, completion: { [weak self] response in
             guard let self else { return }
-            print(request.allHTTPHeaderFields)
+            print(request.allHTTPHeaderFields ?? "")
             self.state = .finished
             self.queue?.process(request: self, response: response)
         })
