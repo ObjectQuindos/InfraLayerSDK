@@ -59,7 +59,7 @@ public final class InfraLayer {
     // MARK: - Execute
     
     // String Response
-    public func request<T: Task>(_ task: T, completion: @escaping ((PlainResponse) -> Void)) {
+    public func request<T: APITask>(_ task: T, completion: @escaping ((PlainResponse) -> Void)) {
         
         execute(task) { result in
             
@@ -75,7 +75,7 @@ public final class InfraLayer {
     }
     
     // JSON Response
-    public func request<T: Task>(_ task: T, completion: @escaping ((JSONResponse) -> Void)) {
+    public func request<T: APITask>(_ task: T, completion: @escaping ((JSONResponse) -> Void)) {
         
         execute(task) { result in
             
@@ -91,7 +91,7 @@ public final class InfraLayer {
     }
     
     // Data Response
-    public func request<T: Task>(_ task: T, completion: @escaping ((DataResponse) -> Void)) {
+    public func request<T: APITask>(_ task: T, completion: @escaping ((DataResponse) -> Void)) {
         
         execute(task) { result in
             
@@ -107,7 +107,7 @@ public final class InfraLayer {
     }
     
     // ResponseHandler Response
-    public func request<T: Task>(_ task: T, completion: @escaping ((ResponseHandler) -> Void)) {
+    public func request<T: APITask>(_ task: T, completion: @escaping ((ResponseHandler) -> Void)) {
         
         execute(task) { result in
             
@@ -122,7 +122,7 @@ public final class InfraLayer {
         }
     }
     
-    private func execute<T: Task>(_ task: T, completion: @escaping (TaskClosure)) {
+    private func execute<T: APITask>(_ task: T, completion: @escaping (TaskClosure)) {
         let url = queue.prepare(request: session.request(with: task))
         let request = Request(id: task.id, request: url, session: session, queue: queue, completion: completion)
         queue.enqueue(request: request)

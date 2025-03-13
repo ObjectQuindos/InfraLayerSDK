@@ -22,7 +22,7 @@ public final class Session {
         self.init(with: url, session: session)
     }
     
-    func request<T: Task>(with task: T) -> URLRequest {
+    func request<T: APITask>(with task: T) -> URLRequest {
         return task.request(with: baseURL)
     }
     

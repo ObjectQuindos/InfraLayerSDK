@@ -1,7 +1,7 @@
 
 import Foundation
 
-public protocol Task {
+public protocol APITask {
     
     var method: HTTPMethod { get }
     var path: String { get }
@@ -16,7 +16,7 @@ public protocol Task {
     var id: Identifier { get }
 }
 
-public extension Task {
+public extension APITask {
     
     var id: Identifier {
         method.rawValue + path + parameters.description
